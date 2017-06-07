@@ -1,0 +1,134 @@
+<html>
+<script src="angular.js"></script>
+<script>
+	var app = angular.module("student", []);
+	app.controller("studentController", function($scope) {
+		$scope.studentList = []
+
+		$scope.save = function() {
+			var obj = {
+				"name" : $scope.nameVal,
+				"mark1" : $scope.mark1Val,
+				"mark2" : $scope.mark2Val,
+				"mark3" : $scope.mark3Val
+			}
+
+			if (!$scope.nameVal) {
+				alert("Please enter the name");
+			} else if (!$scope.mark1Val) {
+				alert("Please enter mark1");
+			} else if (!$scope.mark2Val) {
+				alert("Please enter mark2");
+			} else if (!$scope.mark3Val) {
+				alert("Please enter mark3");
+			} else {
+				if (isNaN($scope.mark1Val) || isNaN($scope.mark2Val)
+						|| isNaN($scope.mark3Val)) {
+					alert("Please Enter a valid Marks");
+				} else {
+					$scope.studentList.push(obj);
+					$scope.nameVal = "";
+					$scope.mark1Val = "";
+					$scope.mark2Val = "";
+					$scope.mark3Val = "";
+					alert("Details saved Successfully!!!");
+				}
+			}
+		}
+
+	});
+</script>
+
+<body ng-app="student">
+
+	<div ng-controller="studentController" align="center">
+		<form name="myForm">
+			<table>
+				<tr>
+					<th colspan="2" align="center">Enter the below details</th>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td><input name="nameVal" ng-model="nameVal" required /></td>
+				</tr>
+				<tr>
+					<td>Mark1</td>
+					<td><input type="text" id="mark1" ng-model="mark1Val" min="0"
+						max="100" required /></td>
+				</tr>
+				<tr>
+					<td>Mark2</td>
+					<td><input type="text" id="mark2" ng-model="mark2Val" min="0"
+						max="100" integer /></td>
+				</tr>
+				<tr>
+					<td>Mark3</td>
+					<td><input type="text" id="mark3" ng-model="mark3Val" min="0"
+						max="100" integer /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="button" value="Save"
+						ng-click="save()" /></td>
+				</tr>
+			</table>
+		</form>
+
+		<br /> <br />
+
+		<hr />
+		<div id="output">
+			<table border="1">
+				<tr>
+					<th colspan="2" align="center">Student Mark Details</th>
+				</tr>
+				<tr>
+					<td width="100px">Name</td>
+					<td width="100px">{{nameVal}}</td>
+				</tr>
+				<tr>
+					<td>Mark1</td>
+					<td>{{mark1Val}}</td>
+				</tr>
+				<tr>
+					<td>Mark2</td>
+					<td>{{mark2Val}}</td>
+				</tr>
+				<tr>
+					<td>Mark3</td>
+					<td>{{mark3Val}}</td>
+				</tr>
+				<tr>
+					<td>Total</td>
+					<td>{{mark1Val*1+mark2Val*1+mark3Val*1}}</td>
+				</tr>
+				<tr>
+					<td>Average</td>
+					<td>{{(mark1Val*1+mark2Val*1+mark3Val*1)/3}}</td>
+				</tr>
+
+			</table>
+		</div>
+
+
+		<br /> <br />
+		<hr />
+		<table border="1">
+			<tr>
+				<td width="105px">Name</td>
+				<td width="45px">Mark1</td>
+				<td width="45px">Mark2</td>
+				<td width="45px">Mark3</td>
+			</tr>
+			<tr ng-repeat="x in studentList">
+				<td>{{ x.name }}</td>
+				<td>{{ x.mark1 }}</td>
+				<td>{{ x.mark2 }}</td>
+				<td>{{ x.mark3 }}</td>
+			</tr>
+		</table>
+
+
+	</div>
+
+</body>
+</html>
