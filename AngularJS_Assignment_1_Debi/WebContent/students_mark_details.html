@@ -1,0 +1,112 @@
+<html>
+<head>
+<script src="angular-1.4.8.js"></script>
+<script src="student_module.js"></script>
+</head>
+<body ng-app="studentApp">
+	<h2>Students' MarkSheet</h2>
+	<form ng-controller="studentCtrl" name="studentForm" novalidate>
+		<!-- To provide Student details and basic validations -->
+		<p>
+			Student Name: <input type="text" name="studentName"
+				ng-model="studentName" required> <span style="color: red"
+				ng-show="studentForm.studentName.$dirty && studentForm.studentName.$invalid">
+				<span ng-show="studentForm.studentName.$error.required">Student
+					Name is required.</span>
+			</span>
+		</p>
+		<h3>Marks</h3>
+		<p>
+			Subject 1: <input type="text" name="sub1Mark" ng-model="sub1Mark"
+				required> <span style="color: red"
+				ng-show="studentForm.sub1Mark.$dirty && studentForm.sub1Mark.$invalid">
+				<span ng-show="studentForm.sub1Mark.$error.required">Subject1
+					mark is required and should be in number format.</span>
+			</span>
+		</p>
+		<p>
+			Subject 2: <input type="text" name="sub2Mark" ng-model="sub2Mark"
+				required> <span style="color: red"
+				ng-show="studentForm.sub2Mark.$dirty && studentForm.sub2Mark.$invalid">
+				<span ng-show="studentForm.sub2Mark.$error.required">Subject2
+					mark is required and should be in number format.</span>
+			</span>
+		</p>
+		<p>
+			Subject 3: <input type="text" name="sub3Mark" ng-model="sub3Mark"
+				required> <span style="color: red"
+				ng-show="studentForm.sub3Mark.$dirty && studentForm.sub3Mark.$invalid">
+				<span ng-show="studentForm.sub3Mark.$error.required">Subject3
+					mark is required and should be in number format.</span>
+			</span>
+		</p>
+		<p>
+			<input type="button" value="Save" ng-click="save()" />
+			</td>
+		</p>
+		<br />
+		<br />
+
+		<!-- To display current Student details -->
+		<div>
+			<table border="1">
+				<tr>
+					<th colspan="2" align="center">Student's Mark Details:</th>
+				</tr>
+				<tr>
+					<td>Student's Name:</td>
+					<td>{{studentName}}</td>
+				</tr>
+				<tr>
+					<td>Subject 1:</td>
+					<td>{{sub1Mark}}</td>
+				</tr>
+				<tr>
+					<td>Subject 2:</td>
+					<td>{{sub2Mark}}</td>
+				</tr>
+				<tr>
+					<td>Subject 3:</td>
+					<td>{{sub3Mark}}</td>
+				</tr>
+				<tr>
+					<td>Total:</td>
+					<td>{{sub1Mark*1+sub2Mark*1+sub3Mark*1}}</td>
+				</tr>
+				<tr>
+					<td>Average</td>
+					<td>{{(sub1Mark*1+sub2Mark*1+sub3Mark*1)/3}}</td>
+				</tr>
+			</table>
+		</div>
+		<br />
+		<br />
+		<!-- To display List of Students -->
+		<table border="1">
+			<tr>
+				<th colspan="6" align="center">List of Students:</th>
+			</tr>
+			<tr>
+				<td>Student's Name</td>
+				<td>Subject 1</td>
+				<td>Subject 2</td>
+				<td>Subject 3</td>
+				<td>Total</td>
+				<td>Average</td>
+			</tr>
+			<tr ng-repeat="list in studentList">
+				<td>{{ list.studentName }}</td>
+				<td>{{ list.sub1Mark }}</td>
+				<td>{{ list.sub2Mark }}</td>
+				<td>{{ list.sub3Mark }}</td>
+				<td>{{ list.sub1Mark*1+list.sub2Mark*1+list.sub3Mark*1 }}</td>
+				<td>{{ (list.sub1Mark*1+list.sub2Mark*1+list.sub3Mark*1)/3}}</td>
+			</tr>
+		</table>
+
+	</form>
+</body>
+<script>
+
+</script>
+</html>
