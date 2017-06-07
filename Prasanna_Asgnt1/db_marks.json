@@ -1,0 +1,32 @@
+{
+  "markSheet": [
+    {
+      "id": 1,
+      "Name": "Test",
+      "Mark1": "88",
+      "Mark2": "99",
+      "Mark3": "77"
+    },
+    {
+      "Name": "Prasanna",
+      "Mark1": 12,
+      "Mark2": 15,
+      "Mark3": 15,
+      "id": 2
+    },
+    {
+      "Name": "Prasanna",
+      "Mark1": 12,
+      "Mark2": 15,
+      "Mark3": 15,
+      "id": 3
+    },
+    {
+      "Name": "Prasanna",
+      "Mark1": 12,
+      "Mark2": 45,
+      "Mark3": 45,
+      "id": 4
+    }
+  ]
+}

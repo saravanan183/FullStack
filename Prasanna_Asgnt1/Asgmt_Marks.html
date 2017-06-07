@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <script src="angular-1.4.8.js"></script>
+    <script src="Asgmt_Marks.js"></script>
+    <title>Marks Listed</title>
+</head>
+
+<body ng-app="marksApp">
+    <div ng-controller="marksController">
+        <label class="col-md-4 control-label" for="name">Name</label>
+        <input id="name" type="text" ng-model="nameVal" class="form-control input-md" required="">
+        <label class="col-md-4 control-label" for="mark1">Quatum Field Theory</label>
+        <input id="mark1" type="number" ng-model="mark1Val" class="form-control input-md" required="">
+        <label class="col-md-4 control-label" for="mark2">Elementary Particles</label>
+        <input id="mark2" type="number" ng-model="mark2Val" class="form-control input-md" required="">
+        <label class="col-md-4 control-label" for="mark3">High Energy Astrophysics</label>
+        <input id="mark3" type="number" ng-model="mark3Val" class="form-control input-md" required="">
+
+        <div id="nameOut">{{"Name: "+ nameVal}}</div>
+        <div id="mark1Out">{{"Sub 1: "+mark1Val}}</div>
+        <div id="mark2Out">{{"Sub 2: "+mark2Val}}</div>
+        <div id="mark3Out">{{"Sub 3: "+mark3Val}}</div>
+        <div id="avg">{{"Average: "+((mark1Val+mark2Val+mark3Val)/3)}}</div>
+
+        <input type="button" value="Submit Marks" ng-click="submitMarks()" />
+
+        <br/>
+        <table class="mark_styl">
+            <caption>Marks</caption>
+            <thead>
+                <tr>
+                    <th>Homo Sapien</th>
+                    <th>Quatum Field Theory</th>
+                    <th>Elementary Particles</th>
+                    <th>High Energy Astrophysics</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in mkmarks">
+                    <td>
+                        <div id="nameOut">{{x.Name}}</div>
+                    </td>
+                    <td>
+                        <div id="mark1Out">{{x.Mark1}}</div>
+                    </td>
+                    <td>
+                        <div id="mark2Out">{{x.Mark2}}</div>
+                    </td>
+                    <td>
+                        <div id="mark3Out">{{x.Mark3}}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
+
+<style>
+    .mark_styl {
+        border: 1px solid #C0C0C0;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+    
+    .mark_styl th {
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+        background: #F0F0F0;
+    }
+    
+    .mark_styl td {
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+    }
+</style>
