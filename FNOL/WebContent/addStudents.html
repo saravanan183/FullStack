@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script src="angular.js"></script>
+        <script src="student.js"></script>
+   
+    </head>
+    
+    <body>
+<div ng-controller="addStudentController">
+    <form name="form" class="css-form" > ID:
+        <input type="number" ng-model="student.studentId" name="studentId" required/> <br/>
+        <div ng-show="form.studentId.$touched">
+            <div ng-show="form.studentId.$error.required"> Enter Student Id</div>
+            <div ng-show="form.studentId.$error.integer"> Enter valid student Id</div>
+        </div><br/>
+        Name:
+        <input type="text" ng-model="student.studentName" name="studentName" required/> <br/>
+        <div ng-show="form.$submitted || form.studentName.$touched">
+            <div ng-show="form.studentName.$error.required"> Enter Student Name</div>
+            
+        </div>   
+        <input type="button" ng-click="reset(form)" value="Reset" />
+        <input type="submit" ng-click="update(student)" value="Save" />
+        
+         <style type="text/css">
+  .css-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+  }
+  .css-form input.ng-valid.ng-touched {
+    background-color: #78FA89;
+  }
+</style>
+    </form>
+    
+</div>
+
+
+</body>
+</html>
+

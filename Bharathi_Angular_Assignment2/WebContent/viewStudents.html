@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script src="angular.js"></script>
+        <script src="student.js"></script>
+    </head>
+    <body>
+<div ng-controller="viewStudentController" align = "center">
+<h2> Student Details</h2>
+<table border = "1">
+	<tr>
+        <td>Student Name</td><td>Student ID</td><td>Age</td> <td>Action</td>
+    </tr>
+    <tr ng-repeat="student in student | orderBy:'age' track by $index">
+        <td>{{student.nameVal | uppercase}} </td><td>{{student.id}}</td> <td>{{student.age}}</td><td><a href="#">Edit</a>&nbsp;<input type="button" ng-click="deleteStudent(student.id)" value="delete" /></td>
+    </tr>
+</table>
+    
+    
+</div>
+</body>
+</html>

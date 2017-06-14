@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script src="angular.js"></script>
+        <script src="angular-route.js"></script>
+        <script src="main.js"></script>
+        <script src="student.js"></script>
+        <link rel="stylesheet" href="student.css">
+    </head>
+    <body bgcolor="lightgrey">
+    <br/><br/>
+    <div id="wrapper">
+        <div ng-app="app1">
+           <ul class="topnav">
+                <li><a href="#home">Home</a> </li>
+                <li><a href="#addStudents">Add Students</a></li> 
+                <li><a href="#viewStudents">View Students</a></li>                 
+            </ul> 
+            <div ng-view></div>
+        </div>
+        </div>
+    </body>
+</html>
