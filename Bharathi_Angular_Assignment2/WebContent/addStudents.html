@@ -9,16 +9,17 @@
 <div ng-controller="addStudentController">
     <form name="addStudentForm" class="css-form" >
     <br/><br/><br/>
+    <div><font color="red">{{message}}</font></div>
     <table align="center">
 				<tr>
 					<th colspan="2" align="center">Enter the below details</th>
 				</tr>
 				<tr>
 					<td>Name</td>
-					<td><input type="text" name="nameVal" ng-model="student.nameVal"
+					<td><input type="text" name="name" ng-model="student.name"
 						required /> <span style="color: red"
-						ng-show="addStudentForm.nameVal.$dirty && addStudentForm.nameVal.$invalid">
-							<span ng-show="addStudentForm.nameVal.$error.required">Student
+						ng-show="addStudentForm.name.$dirty && addStudentForm.name.$invalid">
+							<span ng-show="addStudentForm.name.$error.required">Student
 								Name is required.</span>
 					</span></td>
 				</tr>
@@ -33,18 +34,21 @@
 				</tr>
 				<tr>
 					<td>Age</td>
-					<td><input type="number" name="mark2Val" ng-model="student.age"
-						min="3" max="100" required /> <span style="color: red"
+					<td>					    
+					<input type="number" name="age" id = "age" ng-model="student.age"
+						min="3" max="100" required />						
+						<span style="color: red"
 						ng-show="addStudentForm.age.$dirty && addStudentForm.age.$invalid">
 							<span ng-show="addStudentForm.age.$error.required">Age
 								is required.</span>
 					</span></td>
+					
 				</tr>
 				
 				<tr>
 					<td colspan="2"><input type="submit" value="Save"
 						ng-click="update(student)"
-						ng-disabled="addStudentForm.nameVal.$dirty && addStudentForm.nameVal.$invalid ||  
+						ng-disabled="addStudentForm.name.$dirty && addStudentForm.name.$invalid ||  
 										addStudentForm.id.$dirty && addStudentForm.id.$invalid ||  
 										addStudentForm.age.$dirty && addStudentForm.age.$invalid " />
 					</td>
