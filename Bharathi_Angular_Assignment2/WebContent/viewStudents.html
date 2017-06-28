@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script src="angular.js"></script>
+        <script src="student.js"></script>
+    </head>
+    <body>
+<div ng-controller="viewStudentController" align = "center">
+<h2> Student Details</h2>
+<div><font color="red">{{message}}</font></div>
+<table border = "1">
+	<tr>
+        <td>Student Name</td><td>Student ID</td><td>Age</td> <td>Action</td>
+    </tr>
+    <tr ng-repeat="student in student | orderBy:'age'">
+        <td>{{student.name | uppercase}} <br/>  </td>
+        <td>{{student.id}}</td> 
+        <td>{{student.age}}</td>
+        <td><input type="button" value="edit" ng-click="edit(student.id)">&nbsp;<input type="button" ng-click="deleteStudent(student.id)" value="delete" /></td>
+        
+    </tr>
+    <tr>
+    <td>
+    <input type="text" ng-model="student1.name" /></td>
+    <td>
+    <input type="text" ng-model="student1.id" disabled/></td>
+    <td> <input type="text" ng-model="student1.age" /></td>
+         <td>   <button ng-click="update(student1)">Submit</button></td>
+    </tr>
+</table>
+
+          
+    
+    
+</div>
+</body>
+</html>
+
+
+
+          
