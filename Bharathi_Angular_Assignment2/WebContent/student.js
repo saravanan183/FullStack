@@ -8,19 +8,23 @@ studentModule.directive('slider', function() {
     directive.scope = {
        data : "="
     },
-    directive.controller=function($scope) { 
-    	alert($( "#age" ).val);
+    directive.controller=function($scope) {
+        console.log("2==>"+$scope);
     	$( "#slider" ).slider({
     	      range: "max",
     	      min: 10,
     	      max: 45,
-    	      value: $( "#age" ).val,
+    	      value: 2,
     	      slide: function( event, ui ) {
     	        $( "#age" ).val( ui.value );
+    	        //$scope.student.age =  ui.value;
+    	        //alert( ui.value);
     	      }
     	    });
-    	    $( "#age" ).val( $( "#slider" ).slider( "value" ) );    	
-    	console.log('Testing',$scope);
+    	    $( "#age" ).val( $( "#slider" ).slider( "value" ) );  
+    	    
+    	    //$scope.student.age = $( "#slider" ).slider( "value" );
+    	
     }
     return directive;
  });
@@ -32,22 +36,15 @@ studentModule.controller("addStudentController", function($scope, studentFactory
 	
    $scope.update = function(student) {
     	$scope.master = angular.copy(student);
-        //studentFactory.update($scope.master);   	
-    	
+      
         console.log($scope.master);
         $http.post("http://10.172.121.112:9080/StudentService/student/addStudent",
         		$scope.master)
                 .then(function (response) {
-                    //console.log(response);
-                	$scope.student = {};
-                	// angular.copy({},addStudentForm); 
-                	$scope.message = "Data Saved Successfully";
-                    //window.location.href="#viewStudents";
+                    $scope.message = "Data Saved Successfully";
+                    window.location.href="#viewStudents";
                 });
-    	
-        
-       // alert("Data Saved Successfully");
-        
+    
         
     }  
 });
@@ -78,32 +75,23 @@ studentModule.controller("viewStudentController", function($scope, studentFactor
     	$http.get("http://10.172.121.112:9080/StudentService/student/getStudentById/"+$scope.data1).then(function (response) {
     		console.log(response.data);
     		$scope.student1 = response.data;
-    //		window.location.href="#addStudents";
-    	  });
+    	});
     	  
     	}
     $scope.update = function(student1) {
     	$scope.master = angular.copy(student1);
-        //studentFactory.update($scope.master);   	
-    	
+        
         console.log($scope.master);
         $http.post("http://10.172.121.112:9080/StudentService/student/updateStudent",
         		$scope.master)
                 .then(function (response) {
-                    //console.log(response);
-                    //window.location.href="#viewStudents";
-                	
-                	$scope.student1 = "";
+                    $scope.student1 = "";
                 	$http.get("http://10.172.121.112:9080/StudentService/student/getAllStudents").then(function (response) {
           		      $scope.student = response.data;
           		      $scope.message = "Data Saved Successfully";
           		  });
                 });
-    	
-        
-       // alert("Data Saved Successfully");
-        
-        
+                 
     }  
     
 });
