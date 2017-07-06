@@ -38,7 +38,7 @@ studentModule.controller("addStudentController", function($scope, studentFactory
     	$scope.master = angular.copy(student);
       
         console.log($scope.master);
-        $http.post("http://10.172.121.112:9080/StudentService/student/addStudent",
+        $http.post("http://localhost:8080/StudentServiceBoot/addStudent",
         		$scope.master)
                 .then(function (response) {
                     $scope.message = "Data Saved Successfully";
@@ -51,15 +51,15 @@ studentModule.controller("addStudentController", function($scope, studentFactory
 
 studentModule.controller("viewStudentController", function($scope, studentFactory, studentService, $http){
     //$scope.student = studentFactory.list();
-   $http.get("http://10.172.121.112:9080/StudentService/student/getAllStudents").then(function (response) {
+   $http.get("http://localhost:8080/StudentServiceBoot/getAllStudents").then(function (response) {
 	      $scope.student = response.data;
 	      $scope.message = "";
 	  });
     
     $scope.deleteStudent = function(item){
     	$scope.data1 =  item;
-    	$http.get("http://10.172.121.112:9080/StudentService/student/deleteStudent/"+$scope.data1).then(function (response) {
-    		$http.get("http://10.172.121.112:9080/StudentService/student/getAllStudents").then(function (response) {
+    	$http.get("http://localhost:8080/StudentServiceBoot/deleteStudent/"+$scope.data1).then(function (response) {
+    		$http.get("http://localhost:8080/StudentServiceBoot/getAllStudents").then(function (response) {
   		      $scope.student = response.data;
   		      $scope.message = "Data Deleted Successfully";
   		  });
@@ -72,7 +72,7 @@ studentModule.controller("viewStudentController", function($scope, studentFactor
     $scope.edit = function(item){
     	$scope.data1 =  item;
     	$scope.message = "";
-    	$http.get("http://10.172.121.112:9080/StudentService/student/getStudentById/"+$scope.data1).then(function (response) {
+    	$http.get("http://localhost:8080/StudentServiceBoot/getStudentById/"+$scope.data1).then(function (response) {
     		console.log(response.data);
     		$scope.student1 = response.data;
     	});
@@ -82,11 +82,11 @@ studentModule.controller("viewStudentController", function($scope, studentFactor
     	$scope.master = angular.copy(student1);
         
         console.log($scope.master);
-        $http.post("http://10.172.121.112:9080/StudentService/student/updateStudent",
+        $http.post("http://localhost:8080/StudentServiceBoot/updateStudent",
         		$scope.master)
                 .then(function (response) {
                     $scope.student1 = "";
-                	$http.get("http://10.172.121.112:9080/StudentService/student/getAllStudents").then(function (response) {
+                	$http.get("http://localhost:8080/StudentServiceBoot/getAllStudents").then(function (response) {
           		      $scope.student = response.data;
           		      $scope.message = "Data Saved Successfully";
           		  });
@@ -114,7 +114,7 @@ studentModule.factory("studentFactory", function(){
         	
         	$http({
         	    method : "GET",
-        	    url :"http://10.172.121.112:9080/StudentService/student/getAllStudents"
+        	    url :"http://localhost:8080/StudentServiceBoot/getAllStudents"
         	  }).then(function mySuccess(response) {        	  
         	      return response.data;
         	    }, function myError(response) {
