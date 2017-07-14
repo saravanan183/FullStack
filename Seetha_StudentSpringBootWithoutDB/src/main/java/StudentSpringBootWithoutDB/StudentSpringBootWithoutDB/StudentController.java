@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +35,7 @@ public class StudentController {
 		return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/addStudent", method = RequestMethod.POST)
+	@RequestMapping(value = "/addStudent", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> addStudent(@RequestBody Student student) {
 		
 		studentMap.put(student.getStdId(), student);
@@ -55,7 +56,7 @@ public class StudentController {
 		return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/modifyStudent/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/modifyStudent/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> modifyStudent(@PathVariable("id") Long id, @RequestBody Student student) {
 
 		studentMap.put(id, student);
